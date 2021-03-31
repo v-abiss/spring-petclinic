@@ -33,15 +33,15 @@ jobs:
     
     - name: Build and Tag image
       run: |
-        docker build -f ./Dockerfile -t ${{ secrets.ACR_LOGIN_SERVER }}/petclinic:${{ github.run_number }} .
+        docker build -f ./Dockerfile -t ${{ secrets.ACR_LOGIN_SERVER }}/spring-petclinic:${{ github.run_number }} .
    
     - name: Scan image
       uses: Azure/container-scan@v0
       with:
-        image-name: ${{ secrets.ACR_LOGIN_SERVER }}/petclinic:${{ github.run_number }}
+        image-name: ${{ secrets.ACR_LOGIN_SERVER }}/spring-petclinic:${{ github.run_number }}
         severity-threshold: CRITICAL
         run-quality-checks: true
         
     - name: Push image
       run: |
-        docker push ${{ secrets.ACR_LOGIN_SERVER }}/petclinic:${{ github.run_number }}
+        docker push ${{ secrets.ACR_LOGIN_SERVER }}/spring-petclinic:${{ github.run_number }}
